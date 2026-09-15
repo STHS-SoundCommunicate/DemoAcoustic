@@ -1,0 +1,22 @@
+{
+  "name": "DemoAcoustic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vite --base ./",
+    "build": "vite build --outDir docs/ --base ./",
+    "serve": "vite preview --outDir docs/ --base ./",
+    "dev-host": "vite --base ./ --host",
+    "serve-host": "vite preview --outDir docs/ --base ./ --host"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "fft.js": "^4.0.4",
+    "vite": "^8.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}

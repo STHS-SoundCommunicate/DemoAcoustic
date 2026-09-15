@@ -1,0 +1,17 @@
+{
+  "CHANNELS": 16,
+  "BITS_PER_SIGNAL": 4,
+  "BPS": 200,
+  "SAMPLING_RATE": 44100,
+  "SIGNAL_FREQ_START": 18000,
+  "SIGNAL_FREQ_WIDTH": 100,
+  "PREAMBLE": [0, 4, 8, 12],
+  "useFFT": true,
+  "useFFTPreambleChecker": true,
+  "useRS": true,
+  "useAutoRSLength": true,
+  "useHeaderRS": true,
+  "RS_ErrorLength": 8,
+  "Header_RS_ParityBytes": 2,
+  "useCrossFade":  false
+}

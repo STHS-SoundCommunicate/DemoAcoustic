@@ -1,0 +1,68 @@
+export function crc(symbols: Uint8Array): number {
+	let c: number = 0;
+	symbols.forEach((s: number): void => {
+		c ^= s; // XOR
+		for(let _: number = 0; _ < 8; ++_) {
+			if(c & 0x80) c = ((c << 1) ^ 0x07) & 0xFF;
+			else c = (c << 1) & 0xFF;
+		}
+	});
+	return c;
+}
+
+export function concat(arr1: Float32Array, arr2: Float32Array): Float32Array {
+	const newArray = new Float32Array(arr1.length + arr2.length);
+	newArray.set(arr1);
+	newArray.set(arr2, arr1.length);
+	return newArray;
+}
+
+export function isEqual(a: ArrayLike<number>, b: ArrayLike<number>): boolean {
+	if (a.length !== b.length) return false;
+	for (let i: number = 0; i < a.length; ++i)
+		if (a[i] !== b[i]) return false;
+	return true;
+}
+
+// utf-8 only
+// audioProcessor.tsで読むときにTextEncoderを呼び出すとエラーになるので、関数内で毎回生成
+
+export function str2bytes(str: string): Uint8Array {
+	return (new TextEncoder).encode(str); // 1Byte区切りのデータ
+}
+
+export function bytes2bits(bytes: Uint8Array): Uint8Array {
+	let result: Uint8Array = new Uint8Array(bytes.length * 8); // 8bit = 1byte
+	let key: number = 0;
+	bytes.forEach((byte: number): void => {
+		for(let i: number = 0; i < 8; ++i)
+			result[key++] = ((byte >> (7 - i)) & 1);
+	});
+	return result;
+}
+
+export function decodeUTF8(buffer: Uint8Array): string {
+	return (new TextDecoder('utf-8')).decode(buffer); // 'utf-8'は冗長
+}
+
+export interface ConstValues {
+	CHANNELS: number;
+	BITS_PER_SIGNAL: number;
+	BPS: number;
+	SAMPLING_RATE: number;
+	SIGNAL_FREQ_START: number;
+	SIGNAL_FREQ_WIDTH: number;
+	PREAMBLE: number[];
+	SIGNAL_FREQS: number[];
+	SIGNAL_MS: number;
+	SAMPLES_COUNT: number;
+	BAUD_RATE: number;
+	useFFT: boolean;
+	useFFTPreambleChecker: boolean;
+	useRS: boolean;
+	useAutoRSLength: boolean;
+	RS_ErrorLength: number;
+	Header_RS_ParityBytes: number;
+	useHeaderRS: boolean;
+	useCrossFade: boolean;
+}
