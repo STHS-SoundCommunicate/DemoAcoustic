@@ -37,9 +37,6 @@ button.addEventListener("click", async function() {
 				break;
 		}
 	});
-
-
-	console.log('called');
 	button.innerText = "Recording...";
 	audioCtx = new (window.AudioContext)({ sampleRate: 44100 });
 	analyser = audioCtx.createAnalyser();
