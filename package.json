@@ -10,6 +10,7 @@
     "dev-host": "vite --base ./ --host",
     "serve-host": "vite preview --outDir docs/ --base ./ --host"
   },
+  "type": "module",
   "dependencies": {
     "@vitejs/plugin-basic-ssl": "^2.3.0",
     "fft.js": "^4.0.4",
